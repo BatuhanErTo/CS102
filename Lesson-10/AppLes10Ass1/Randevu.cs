@@ -55,6 +55,7 @@ namespace AppLes10Ass1
                     result += satir[0] + " " + satir[1] + " " + satir[2] + " " + satir[5] + Environment.NewLine;
                 }
             }
+            read.Close();
             return result;
         }
 
