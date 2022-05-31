@@ -8,5 +8,11 @@ namespace HospitalManagement
 {
     internal class Register
     {
+        List<Hasta> patients = new List<Hasta>();
+
+        public void setReference()
+        {
+
+        }
     }
 }
