@@ -22,7 +22,64 @@ namespace Uyg1Notepad
 
         private void yeniToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (acikDosyaVarMi == false)
+            {
+                if (degisiklikVarMi == false)
+                {
+                    createFile();
+                }
+                else
+                {
+                    DialogResult click1 = MessageBox.Show("Kaydedilsin mi?", "Notepad", MessageBoxButtons.YesNoCancel); 
+                    if (click1 == DialogResult.Yes)
+                    {
+                        SaveFileDialog saveFileDialog = new SaveFileDialog();
+                        DialogResult click2 = saveFileDialog.ShowDialog();
+                        if (click2 == DialogResult.OK)
+                        {
+                            richTextBox1.SaveFile(saveFileDialog.FileName,RichTextBoxStreamType.PlainText);
+                            createFile();
+                        }
+                    }
+                    else if (click1 == DialogResult.No)
+                    {
+                        createFile();
+                    }
+                }
+            }
+            else
+            {
+                if (degisiklikVarMi == false)
+                {
+                    createFile();
+                }
+                else
+                {
+                    DialogResult click1 = MessageBox.Show("Kaydedilsin mi?", "Notepad", MessageBoxButtons.YesNoCancel);
+                    if (click1 == DialogResult.Yes)
+                    {
+                        SaveFileDialog saveFileDialog = new SaveFileDialog();
+                        DialogResult click2 = saveFileDialog.ShowDialog();
+                        if (click2 == DialogResult.OK)
+                        {
+                            richTextBox1.SaveFile(saveFileDialog.FileName, RichTextBoxStreamType.PlainText);
+                            createFile();
+                        }
+                    }
+                    else if (click1 == DialogResult.No)
+                    {
+                        createFile();
+                    }
+                }
+            }
+        }
 
+        public void createFile()
+        {
+           acikDosyaVarMi = false;
+           degisiklikVarMi = false;
+           richTextBox1.Clear();
+            
         }
 
         public void dosyaAcmaIslemleri()
