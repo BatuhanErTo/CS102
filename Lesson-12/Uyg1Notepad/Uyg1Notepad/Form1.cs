@@ -79,7 +79,6 @@ namespace Uyg1Notepad
            acikDosyaVarMi = false;
            degisiklikVarMi = false;
            richTextBox1.Clear();
-            
         }
 
         public void dosyaAcmaIslemleri()
@@ -137,7 +136,42 @@ namespace Uyg1Notepad
                 }
             }
         }
-
+        public void saveIslemleri()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            DialogResult dialogResult = saveFileDialog.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                richTextBox1.SaveFile(saveFileDialog.FileName, RichTextBoxStreamType.PlainText);
+            }
+            degisiklikVarMi = true;
+        }
+        private void kaydetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (acikDosyaVarMi == false)
+            {
+                if (degisiklikVarMi == false)
+                {
+                    saveIslemleri();
+                }
+                else
+                {
+                    saveIslemleri();
+                }
+            }
+            else
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                if (degisiklikVarMi == false)
+                {
+                    richTextBox1.SaveFile(acikDosyaAdi, RichTextBoxStreamType.PlainText);
+                }
+                else
+                {
+                    richTextBox1.SaveFile(acikDosyaAdi, RichTextBoxStreamType.PlainText);
+                }
+            }
+        }
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             degisiklikVarMi = true;
@@ -184,6 +218,33 @@ namespace Uyg1Notepad
         {
             AboutBox1 ab = new AboutBox1();
             ab.Show();
+        }
+
+        private void farklıKaydetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (acikDosyaVarMi == false)
+            {
+                if (degisiklikVarMi == false)
+                {
+                    saveIslemleri();
+                }
+                else
+                {
+                    saveIslemleri();
+                }
+            }
+            else
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                if (degisiklikVarMi == false)
+                {
+                    saveIslemleri();
+                }
+                else
+                {
+                    saveIslemleri();
+                }
+            }
         }
     }
 }
