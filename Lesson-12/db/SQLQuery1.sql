@@ -31,5 +31,5 @@ SELECT OgrNo, avg(Vize*0.4+Final*0.6) AS AVERAGE from Notlar GROUP BY OgrNo HAVI
 
 SELECT Notlar.OgrNo, SUM((Vize*0.4+Final*0.6)*Kredi)/SUM(Kredi) FROM Notlar INNER JOIN Dersler ON Dersler.DersKodu = Notlar.DersKodu GROUP BY OgrNo 
 
-
+SELECT DersKodu, AVG(Vize*0.4+Final*0.6) AS DERS_ORT FROM Notlar GROUP BY DersKodu HAVING AVG(Vize*0.4+Final*0.6) > 60; 
 
