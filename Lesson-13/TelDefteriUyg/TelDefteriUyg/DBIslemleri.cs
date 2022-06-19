@@ -39,5 +39,57 @@ namespace TelDefteriUyg
             connection.Close();
             return dataSet;
         }
+
+        public static void Ekle(string ad, string soyad, string telefon, int sehirID, string adress)
+        {
+            string sql_command = "Insert Into Kisiler VALUES (@pAd,@pSoyad,@pTelefon,@pSehirID,@pAdress)";
+            SqlCommand command = new SqlCommand(sql_command, connection);
+            command.Parameters.AddWithValue("@pAd",ad);
+            command.Parameters.AddWithValue("@pSoyad", soyad);
+            command.Parameters.AddWithValue("@pTelefon", telefon);
+            command.Parameters.AddWithValue("@pSehirID", sehirID);
+            command.Parameters.AddWithValue("@pAdress", adress);
+
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+        public static DataSet Arama(string ad)
+        {
+            string sql_command = "Select * From Kisiler where Adi like  @pAd+'%'";
+            SqlCommand sqlCommand = new SqlCommand(sql_command,connection);
+            sqlCommand.Parameters.AddWithValue("@pAd",ad);
+
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
+            DataSet dataSet = new DataSet();
+            connection.Open();
+            dataAdapter.Fill(dataSet);
+            connection.Close();
+            return dataSet;
+        }
+
+        public static void Guncelle(int KisiID, string tel, string adress)
+        {
+            string sql_command = "Update Kisiler Set Telefon = @pTel, Adress = @pAdress where KisiID = @pKisiID";
+            SqlCommand sqlCommand = new SqlCommand(sql_command, connection);
+            sqlCommand.Parameters.AddWithValue("@pTel", tel);
+            sqlCommand.Parameters.AddWithValue("@pAdress", adress);
+            sqlCommand.Parameters.AddWithValue("@pKisiID", KisiID);
+
+            connection.Open();
+            sqlCommand.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public static void Sil(int KisiID)
+        {
+            string sql_command = "Delete From Kisiler where KisiID = @pKisiID";
+            SqlCommand sqlCommand = new SqlCommand(sql_command, connection);
+            sqlCommand.Parameters.AddWithValue("@pKisiID", KisiID);
+
+            connection.Open();
+            sqlCommand.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }
